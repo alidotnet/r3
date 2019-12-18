@@ -1,4 +1,5 @@
 'use strict'
+//test by ds
 const fs = require('fs')
 const tty = require('tty')
 const blessed = require('@medv/blessed')
