@@ -1,0 +1,60 @@
+{
+  "name": "fx",
+  "version": "16.0.0",
+  "description": "Command-line JSON viewer",
+  "repository": "antonmedv/fx",
+  "author": "Anton Medvedev <anton@medv.io>",
+  "license": "MIT",
+  "bin": {
+    "fx": "index.js"
+  },
+  "files": [
+    "bang.js",
+    "config.js",
+    "find.js",
+    "fx.js",
+    "index.js",
+    "print.js",
+    "reduce.js",
+    "std.js",
+    "stream.js"
+  ],
+  "scripts": {
+    "test": "ava",
+    "build": "pkg . --out-path dist -t node8-linux-x64,node8-macos-x64,node8-win-x64",
+    "zip": "cd dist && find . -name 'fx-*' -exec zip '{}.zip' '{}' \\;",
+    "release": "release-it --github.release --github.assets=dist/*.zip",
+    "brew:release": "brew bump-formula-pr --url=https://registry.npmjs.org/fx/-/fx-`fx package.json .version`.tgz --no-audit fx"
+  },
+  "release-it": {
+    "hooks": {
+      "after:bump": "rm -rf ./dist && npm run build && npm run zip"
+    }
+  },
+  "keywords": [
+    "json",
+    "viewer",
+    "cli",
+    "terminal",
+    "term",
+    "console",
+    "ascii",
+    "unicode",
+    "blessed"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "@medv/blessed": "^2.0.0",
+    "chalk": "^3.0.0",
+    "indent-string": "^4.0.0",
+    "lossless-json": "^1.0.3",
+    "string-width": "^4.2.0"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "pkg": "^4.4.1",
+    "release-it": "^12.4.3"
+  }
+}
