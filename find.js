@@ -1,4 +1,5 @@
 'use strict'
+//test, from devello studio
 
 function* find(v, regex, path = []) {
   if (typeof v === 'undefined' || v === null) {
